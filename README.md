@@ -32,3 +32,23 @@ https://github.com/minkaungmon430/voice-ollama-coder
 
 ```bash
 ollama pull qwen2.5-coder:7b
+
+2. Install Python dependencies
+pip install ollama speechrecognition pyaudio
+
+3. Run the agent
+python voice_coder.py
+
+Speak when you see: "Listening..."
+Examples you can say:
+
+"Create hello.py that prints Hello World"
+"Add a function to calculate factorial in math_utils.py"
+"Run pytest and fix the failing test"
+"Debug why this loop is infinite"
+
+How it works (simple architecture)
+
+SpeechRecognition → captures voice → converts to text (offline Sphinx or Google if online)
+Ollama → sends prompt + current folder context → gets code/fix plan
+Agent loop → proposes changes → asks "Apply? (y/n)" → executes if yes
